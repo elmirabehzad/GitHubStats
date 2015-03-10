@@ -1,0 +1,40 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": false,
+        "designer|userClassName": "Branch",
+        "model": "Branch",
+        "storeId": "Branch"
+    },
+    "name": "MyJsonStore",
+    "designerId": "ea46093e-7b31-4a22-83b3-18e6521aba0b",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyAjaxProxy1",
+            "designerId": "e1481cc0-f99c-4c4a-abba-af876164117f",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyJsonReader1",
+                    "designerId": "63a98ff8-9471-460a-9344-9732e1a4e0a0"
+                }
+            ]
+        }
+    ]
+}

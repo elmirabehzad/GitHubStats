@@ -1,0 +1,43 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Branch"
+    },
+    "name": "MyModel",
+    "designerId": "28fbfe7c-0be4-495c-a339-c9c0eb4bf32f",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Day",
+                "type": "string"
+            },
+            "name": "MyField4",
+            "designerId": "f761d7d1-7a0d-41fd-8580-3cd2fce8db6c"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Count",
+                "type": "int"
+            },
+            "name": "MyField5",
+            "designerId": "3a43ab94-6623-4334-b256-1a77aa5eaa65"
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "name": "Dashboard",
+    "settings": {
+        "cmd": {
+            "license": "commercial"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "http://localhost:8888/Dashboard/",
+        "exportPath": "",
+        "projectHasEnabledWebServer": false,
+        "lockUrlPrefix": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "spacesToIndent": 4,
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "installStatus": "Not Installed",
+        "displayfield-ExtBox1-1122-inputEl": "a new version of the framework is available"
+    },
+    "xdsVersion": "3.1.0",
+    "xdsBuild": 1934,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000007,
+    "framework": "ext42",
+    "viewOrderMap": {
+        "view": [
+            "576e036f-4f35-45ce-80ed-9122aae0675a"
+        ],
+        "store": [
+            "28e85887-994c-4036-9ac5-90c034f43e53",
+            "ea46093e-7b31-4a22-83b3-18e6521aba0b",
+            "66fc3a7b-83b3-4513-a123-a56ba41db5ac",
+            "818a5dab-dbb1-49cb-a315-fc78915179b8"
+        ],
+        "controller": [
+            "31f1fc64-6d08-4525-8a14-4605d3eba1fb"
+        ],
+        "model": [
+            "f408b54e-6b68-4f20-b81c-3c8eb752a601",
+            "96eac30f-be9e-4780-bd7d-f9d5243acf97",
+            "28fbfe7c-0be4-495c-a339-c9c0eb4bf32f",
+            "786bf6d4-abd5-4b9a-ad1b-ad2f77a83056"
+        ],
+        "resource": [
+            "734c6475-ccfd-4e1c-b0d5-5b7a388b4293",
+            "c7c33a17-b6f1-4290-ae03-3240669636b4"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

@@ -1,0 +1,337 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Dashboard",
+        "models": [
+            "Language",
+            "ContributorComit",
+            "Branch",
+            "info"
+        ],
+        "stores": [
+            "Language",
+            "Branch",
+            "ContributorComit",
+            "Info"
+        ],
+        "views": [
+            "DashboardViewPort"
+        ]
+    },
+    "name": "MyController",
+    "designerId": "31f1fc64-6d08-4525-8a14-4605d3eba1fb",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "dashboardViewPort",
+                "selector": "dashboardviewport"
+            },
+            "name": "dashboardViewPort",
+            "designerId": "1ac6a237-ae54-49ee-8b1b-d3309cc861d4"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "application"
+                ],
+                "fn": "init",
+                "implHandler": [
+                    "var me = this;",
+                    "me.apiUrl = \"../Api/values/\"; //\"http://localhost:11277/Api/values/\";",
+                    "me.control({",
+                    "    \"dashboardviewport button[text=GO]\":{",
+                    "        click:me.onGoclick",
+                    "    },",
+                    "    \"dashboardviewport button[text=DisplayChart]\":{",
+                    "        click:me.onDisplayChartclick",
+                    "    },",
+                    "    \"dashboardviewport combobox[itemId=cmbBranch]\":{",
+                    "        change:function(field, newValue, oldValue, eOpts){",
+                    "            console.log(field.getValue());",
+                    "           field.setValue(field.getValue(),true);",
+                    "        }",
+                    "    }",
+                    "",
+                    "});"
+                ]
+            },
+            "name": "init",
+            "designerId": "ed64c8e4-71a0-4417-b27e-6c1c5fdca358"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onGoclick",
+                "implHandler": [
+                    "console.log('gooooooo');",
+                    "var me = this;",
+                    "var viewport = me.getDashboardViewPort();",
+                    "var repname = viewport.down('#txtRepName').getValue();",
+                    "me.onInfoGet(repname);",
+                    "",
+                    "// me.onComitsGet(repname);",
+                    "// me.onBranchesGet(repname);"
+                ]
+            },
+            "name": "onGoclick",
+            "designerId": "2449a4f4-b4d0-41a3-b06e-f21935cbc8c7"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "repname"
+                ],
+                "fn": "onInfoGet",
+                "implHandler": [
+                    "var me = this;",
+                    "var viewport = me.getDashboardViewPort();",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: me.apiUrl + 'Stats',",
+                    "    method: \"GET\",",
+                    "    params:{",
+                    "        repoName:repname",
+                    "    },",
+                    "    success:function(response){",
+                    "        var data =Ext.decode(response.responseText);",
+                    "        viewport.down('#txthomepage').setValue(data.Homepage);",
+                    "        viewport.down('#txtbranch').setValue(data.Branchcount);",
+                    "        viewport.down('#txtcontributor').setValue(data.Contributorcount);",
+                    "",
+                    "        me.onLanguageGet(repname);",
+                    "        me.onComitsGet(repname);",
+                    "        me.onBranchesGet(repname);",
+                    "",
+                    "    },",
+                    "    failure:function(response){",
+                    "        console.log('failure');",
+                    "    }",
+                    "});",
+                    "",
+                    ""
+                ]
+            },
+            "name": "onInfoGet",
+            "designerId": "7e8b25d0-eada-4d19-bc49-4d54703e6e74"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "repname"
+                ],
+                "fn": "onLanguageGet",
+                "implHandler": [
+                    "var me = this;",
+                    "var viewport = me.getDashboardViewPort();",
+                    "var languageChart = viewport.down('#languagechart');",
+                    "Ext.Ajax.request({",
+                    "    url: me.apiUrl + 'Languages',",
+                    "    method: \"GET\",",
+                    "    params:{",
+                    "        repoName:repname",
+                    "    },",
+                    "    success:function(response){",
+                    "        var data =Ext.decode(response.responseText);",
+                    "        //languageChart.bindStore(data);",
+                    "        var chartStore = languageChart.store;",
+                    "        chartStore.loadData(data);",
+                    "        languageChart.redraw();",
+                    "    },",
+                    "    failure:function(response){",
+                    "        console.log('failure');",
+                    "    }",
+                    "",
+                    "});",
+                    ""
+                ]
+            },
+            "name": "onLanguageGet",
+            "designerId": "db8bd137-cf9f-45ff-af03-c753b04991ed"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "repname"
+                ],
+                "fn": "onComitsGet",
+                "implHandler": [
+                    "console.log('im in commits');",
+                    "var me = this;",
+                    "var viewport = me.getDashboardViewPort();",
+                    "var commitChart = viewport.down('#comitchart');",
+                    "        Ext.Ajax.request({",
+                    "            url:me.apiUrl + 'Contributors',",
+                    "            method:\"GET\",",
+                    "            params:{",
+                    "                repoName:repname",
+                    "            },",
+                    "            success:function(response){",
+                    "                var data =Ext.decode(response.responseText);",
+                    "                var chartStore = commitChart.store;",
+                    "                chartStore.loadData(data);",
+                    "                commitChart.redraw();",
+                    "",
+                    "            },",
+                    "            failure:function(response){",
+                    "               console.log('failure');",
+                    "            }",
+                    "",
+                    "        });",
+                    "// var data=[{\"Name\":\"triolenzunge\",\"CommitCount\":1},{\"Name\":\"seanyeh\",\"CommitCount\":1},{\"Name\":\"folbo\",\"CommitCount\":1},{\"Name\":\"vanferry\",\"CommitCount\":1},{\"Name\":\"evinism\",\"CommitCount\":1},{\"Name\":\"shoogle\",\"CommitCount\":1},{\"Name\":\"elerouxx\",\"CommitCount\":1},{\"Name\":\"watery\",\"CommitCount\":1},{\"Name\":\"mbrouard\",\"CommitCount\":1},{\"Name\":\"johnsonge\",\"CommitCount\":1},{\"Name\":\"algadoreo\",\"CommitCount\":1},{\"Name\":\"LucaRood\",\"CommitCount\":1},{\"Name\":\"uwei\",\"CommitCount\":1},{\"Name\":\"danielgarthur\",\"CommitCount\":2},{\"Name\":\"jasonbcox\",\"CommitCount\":2},{\"Name\":\"briff\",\"CommitCount\":2},{\"Name\":\"gomesrod\",\"CommitCount\":2},{\"Name\":\"chenlung\",\"CommitCount\":2},{\"Name\":\"zazula\",\"CommitCount\":2},{\"Name\":\"mokaspar\",\"CommitCount\":2},{\"Name\":\"krlmlr\",\"CommitCount\":3},{\"Name\":\"guifre2\",\"CommitCount\":3},{\"Name\":\"thSoft\",\"CommitCount\":3},{\"Name\":\"yufanyufan\",\"CommitCount\":4},{\"Name\":\"fyzix\",\"CommitCount\":4},{\"Name\":\"jpfleury\",\"CommitCount\":4},{\"Name\":\"CombatCube\",\"CommitCount\":5},{\"Name\":\"rtega\",\"CommitCount\":5},{\"Name\":\"alcinos\",\"CommitCount\":7},{\"Name\":\"Gootector\",\"CommitCount\":8},{\"Name\":\"Isensee\",\"CommitCount\":9},{\"Name\":\"Gai-Luron\",\"CommitCount\":11},{\"Name\":\"akdor1154\",\"CommitCount\":11},{\"Name\":\"shredpub\",\"CommitCount\":12},{\"Name\":\"thomasbonte\",\"CommitCount\":12},{\"Name\":\"Soerboe\",\"CommitCount\":20},{\"Name\":\"MarkRS-UK\",\"CommitCount\":22},{\"Name\":\"ChurchOrganist\",\"CommitCount\":23},{\"Name\":\"heuchi\",\"CommitCount\":28},{\"Name\":\"vgstef\",\"CommitCount\":34},{\"Name\":\"Igevorse\",\"CommitCount\":50},{\"Name\":\"softins\",\"CommitCount\":56},{\"Name\":\"AntonioBL\",\"CommitCount\":66},{\"Name\":\"andreituicu\",\"CommitCount\":76},{\"Name\":\"jpirie\",\"CommitCount\":84},{\"Name\":\"BartlomiejLewandowski\",\"CommitCount\":122},{\"Name\":\"lvinken\",\"CommitCount\":216},{\"Name\":\"mgavioli\",\"CommitCount\":382},{\"Name\":\"MarcSabatella\",\"CommitCount\":554},{\"Name\":\"Jojo-Schmitz\",\"CommitCount\":617},{\"Name\":\"trig-ger\",\"CommitCount\":827},{\"Name\":\"lasconic\",\"CommitCount\":1656},{\"Name\":\"wschweer\",\"CommitCount\":1779}];",
+                    "// var chartStore = commitChart.store;",
+                    "// chartStore.loadData(data);",
+                    "// commitChart.redraw();"
+                ]
+            },
+            "name": "onComitsGet",
+            "designerId": "b9488c05-9f30-43c7-9c1a-4cb0b4e53e9e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "repname"
+                ],
+                "fn": "onBranchesGet",
+                "implHandler": [
+                    "                var me = this;",
+                    "                var viewport = me.getDashboardViewPort();",
+                    "                var cmbBranch = viewport.down('#cmbBranch');",
+                    "                Ext.Ajax.request({",
+                    "                    url:me.apiUrl + 'BranchList',",
+                    "                    method: \"GET\",",
+                    "                    params:{",
+                    "                       repoName:repname",
+                    "                    },",
+                    "                    success:function(response){",
+                    "                        var data =Ext.decode(response.responseText);",
+                    "                        for ( var i = 0, c = data.length; i < c; i++ ) {",
+                    "                       data[i] = [data[i]];",
+                    "                    }",
+                    "                    var Tesstore = new Ext.data.ArrayStore({",
+                    "                    fields: ['Name'],",
+                    "                    data : data",
+                    "                    });",
+                    "                    cmbBranch.store = Tesstore;",
+                    "                    cmbBranch.displayField = 'Name';",
+                    "                    cmbBranch.valueField = 'Name';",
+                    "",
+                    "",
+                    "                    },",
+                    "                    failure:function(response){",
+                    "                       console.log('failure');",
+                    "                    }",
+                    "",
+                    "                });",
+                    "//                var data=[\"al\",\"iman\"];",
+                    "//                 for ( var i = 0, c = data.length; i < c; i++ ) {",
+                    "//                        data[i] = [data[i]];",
+                    "//                     }",
+                    "//                     var Tesstore = new Ext.data.ArrayStore({",
+                    "//                     fields: ['Name'],",
+                    "//                     data : data",
+                    "//                     });",
+                    "//                     cmbBranch.store = Tesstore;",
+                    "//                     cmbBranch.autoSelect = true;",
+                    "//                     cmbBranch.displayField = 'Name';",
+                    "//                     cmbBranch.valueField = 'Name';",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "name": "onBranchesGet",
+            "designerId": "4fc16df8-594f-45f6-9740-3fa3ea5fccbc"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onDisplayChartclick",
+                "implHandler": [
+                    "        console.log('displaychart');",
+                    "        var me = this;",
+                    "        var viewport = me.getDashboardViewPort();",
+                    "        var branchChart = viewport.down('#branchChart');",
+                    "        var repname = viewport.down('#txtRepName').getValue();",
+                    "        var cmbBranch = viewport.down('#cmbBranch');",
+                    "        var branchValue = cmbBranch.getValue();",
+                    "        var dateValue = viewport.down('#dpbranch').getValue();",
+                    "         Ext.Ajax.request({",
+                    "                    url:me.apiUrl + 'CommitsInBranch',",
+                    "                    method: \"GET\",",
+                    "                    params:{",
+                    "                        repoName:repname,",
+                    "                        branchName:branchValue,",
+                    "                        topDate:dateValue",
+                    "",
+                    "                    },",
+                    "                    success:function(response){",
+                    "                        var data =Ext.decode(response.responseText);",
+                    "                                var chartStore = branchChart.store;",
+                    "                                chartStore.loadData(data);",
+                    "                                branchChart.redraw();",
+                    "                    },",
+                    "                    failure:function(response){",
+                    "                       console.log('failure');",
+                    "                    }",
+                    "",
+                    "                });",
+                    ""
+                ]
+            },
+            "name": "onDisplayChartclick",
+            "designerId": "8dd7794e-26fa-478b-a5fd-94f704520cc6"
+        }
+    ]
+}

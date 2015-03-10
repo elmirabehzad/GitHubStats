@@ -1,0 +1,40 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": false,
+        "designer|userClassName": "ContributorComit",
+        "model": "ContributorComit",
+        "storeId": "ContributorComit"
+    },
+    "name": "MyJsonStore",
+    "designerId": "66fc3a7b-83b3-4513-a123-a56ba41db5ac",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "name": "MyAjaxProxy2",
+            "designerId": "914c0f79-63a5-4ef5-b47f-81c012d15853",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyJsonReader2",
+                    "designerId": "b8f7a977-c11a-4a2a-8020-2b729a350c9f"
+                }
+            ]
+        }
+    ]
+}

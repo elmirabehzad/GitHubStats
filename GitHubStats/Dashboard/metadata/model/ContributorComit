@@ -1,0 +1,43 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "ContributorComit"
+    },
+    "name": "MyModel",
+    "designerId": "96eac30f-be9e-4780-bd7d-f9d5243acf97",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "Name",
+                "type": "string"
+            },
+            "name": "MyField2",
+            "designerId": "b74d0ca6-2260-4327-a7b0-e140cc8e8ced"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "CommitCount",
+                "type": "int"
+            },
+            "name": "MyField3",
+            "designerId": "88d414d9-e578-46d5-87f7-65f037977b91"
+        }
+    ]
+}
